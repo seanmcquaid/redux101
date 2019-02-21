@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import addStudent from "../actions/addStudent"
 
 // we would like to inform this component from redux.
 // to do that, we need some glue. This component / container needs to know 
@@ -13,7 +14,14 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
 class Student extends Component {
+
+    addNewStudent = ()=>{
+        const name = document.getElementById("student-name").value;
+        this.props.addStudent(name)
+    }
+
     render(){
+        console.log(this.props)
         // console.log(this.props.rightSideofRoom)
         const studentList = this.props.rightSideofRoom.map((student, index)=>{
             return(<li key={index}>{student}</li>)
@@ -21,6 +29,8 @@ class Student extends Component {
         return(
             <div>
                 <h1>Students!</h1>
+                <input type="text" id="student-name" placeholder="Student Name"/>
+                <button onClick={this.addNewStudent}>Add Student</button>
                 <ul>
                     {studentList}
                 </ul>
@@ -42,6 +52,14 @@ function mapStateToProps(state){
     }
 }
 
+function mapDispatchToProps(dispatch){
+    // bindActionCreators takes an object as first param:
+    // property is the local prop name (this.props.aaaaa)
+    // value is the callback (the action file.js)
+    // 2nd param is teh dispatcher
+    return(bindActionCreators({addStudent : addStudent}, dispatch))
+}
+
 // export default student - must not export more than one thing at a time!!!
 
-export default connect(mapStateToProps)(Student);
+export default connect(mapStateToProps,mapDispatchToProps)(Student);
