@@ -29,7 +29,6 @@ const theStore = createStore(reducers);
 // the redux store was made by createStore and giving it the rootReducer
 
 ReactDOM.render(
-    
     <Provider store={theStore}>
         <App/>
     </Provider>, 

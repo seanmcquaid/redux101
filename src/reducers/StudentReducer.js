@@ -1,6 +1,6 @@
 const students = [
-    "stantley",
-    "kyle",
+    "Stan",
+    "Kyle",
     "Rob",
     "Ron",
     "JR",
@@ -12,6 +12,7 @@ const students = [
 // 1b. usually you will want to provide a default state
 // 2. Info that came from the action
 export default function(state = students, action){
+    // console.log("dispatcher just sent me something", action.type)
     if(action.type === "ADD_STUDENT"){
         // this means I care about this action. update
         // making a fresh copy of the array

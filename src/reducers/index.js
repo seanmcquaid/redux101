@@ -24,5 +24,6 @@ const rootReducer = combineReducers({
     // and the value will be the reducer file
     students : StudentReducer
 })
-
+console.log("combineReducers just ran")
+console.log(rootReducer)
 export default rootReducer;
